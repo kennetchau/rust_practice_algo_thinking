@@ -7,8 +7,8 @@ use std::path::Path;
 fn main() {
 
     let test_arr: [u32; 5] = [1,2,3,1,5];
-
-    identical_right(&test_arr, &test_arr, 0);
+    let test_arr_2: [u32; 5] = [1,2,3,1,5];
+    println!("{}", is_identical(&test_arr, &test_arr_2));
 
     // let args: Vec<String> = env::args().collect();
 
@@ -34,9 +34,35 @@ where P: AsRef<Path>, {
     Ok(io::BufReader::new(file).lines())
 }
 
-/* Check if two integers are the same */
-fn identical_right(snow1: &[u32], snow2: &[u32], start: u32) {
-    let (offset, snow2_index): (u32,u32);
-    return
+/* Combined the two function so we can make sure they are identical  */
+fn is_identical(snow1: &[u32], snow2: &[u32]) -> bool{
+    for start in 0..5{
+        if identical_right(snow1, snow2, start) {
+            return true;
+        }
+        else if identical_left(snow1, snow2, start){
+            return true;
+        }
+    }
+    return false;
 }
 
+/* Check if two array are the same when checking from the right*/
+fn identical_right(snow1: &[u32], snow2: &[u32], start: u32) -> bool{
+    for offset in 0..5 {
+        if snow1[offset as usize] != snow2[((start + offset) % 6) as usize]{
+            return false;
+        }
+    }
+    return true;
+}
+
+/* Check if two array are the same when checkign from the left  */
+fn identical_left(snow1: &[u32], snow2: &[u32], start: u32) -> bool{
+    for offset in 0..5 {
+        if snow1[offset as usize] != snow2[((start - offset) % 6) as usize]{
+            return false;
+        }
+    }
+    return true;
+}

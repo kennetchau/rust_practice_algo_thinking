@@ -5,24 +5,21 @@ use std::io::{self, BufRead, LineWriter, Write};
 use std::path::Path;
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
 
-    let test_arr: [u32; 5] = [1,2,3,1,5];
-    let test_arr_2: [u32; 5] = [1,2,3,1,5];
-    println!("{}", is_identical(&test_arr, &test_arr_2));
+    let file_path = &args[1];
 
-    // let args: Vec<String> = env::args().collect();
+    // Create a vector to store the file_content
+    let mut file_content = Vec::new();
 
-    // let file_path = &args[1];
+    /* This following line read the input using the buffer function  and store them into a vector*/
+    if let Ok(lines) = read_lines(file_path) {
+        for line in lines.map_while(Result::ok){
+            let _ = &file_content.push(line);
+        }
+    }
 
-    // // Create a vector to store the file_content
-    // let mut file_content = Vec::new();
-
-    // /* This following line read the input using the buffer function  and store them into a vector*/
-    // if let Ok(lines) = read_lines(file_path) {
-    //     for line in lines.map_while(Result::ok){
-    //         let _ = &file_content.push(line);
-    //     }
-    // }
+    println!("{:#?}",file_content);
 
 
 }

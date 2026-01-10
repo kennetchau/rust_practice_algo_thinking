@@ -18,8 +18,9 @@ fn main() {
             let _ = &file_content.push(line);
         }
     }
-
-    println!("{:#?}",file_content);
+    
+    /* Get the number of snowflakes in the test case using the provided total  */
+    let number_of_snowflakes:u32 = file_content[0].trim().parse().expect("Error!");
 
 
 }

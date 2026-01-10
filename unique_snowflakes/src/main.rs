@@ -19,7 +19,7 @@ fn main() {
         }
     }
     
-    /* Get the number of snowflakes in the test case using the provided total  */
+    /* Set the limit of snowflakes using the provided total */
     let number_of_snowflakes:u32 = file_content[0].trim().parse().expect("Error!");
 
 

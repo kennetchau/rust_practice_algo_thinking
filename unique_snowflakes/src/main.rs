@@ -20,7 +20,7 @@ fn main() {
     }
     
     /* Set the limit of snowflakes using the provided total */
-    let number_of_snowflakes:u32 = file_content[0].trim().parse().expect("Error!");
+    let number_of_snowflakes:u32 = file_content[0].trim().parse().expect("Error please insert a valid integer");
 
 
 }
